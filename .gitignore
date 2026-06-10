@@ -11,8 +11,8 @@ index-base/
 *.jsonl.gz
 *.csv
 
-# Docs output (generated)
-docs/*.html
+# OS
+
 
 # OS
 .DS_Store
