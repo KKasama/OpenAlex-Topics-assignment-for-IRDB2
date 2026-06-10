@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+
+# Data (large files)
+data/
+index-base/
+*.jsonl
+*.jsonl.gz
+*.csv
+
+# Docs output (generated)
+docs/*.html
+
+# OS
+.DS_Store
