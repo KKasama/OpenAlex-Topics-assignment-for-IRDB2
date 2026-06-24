@@ -4,9 +4,12 @@ __pycache__/
 .venv/
 *.egg-info/
 
-# Data (large files)
+# Data (large files — regeneratable)
 data/
 index-base/
+index-scibert/
+index-e5-large/
+logs/
 *.jsonl
 *.jsonl.gz
 *.csv

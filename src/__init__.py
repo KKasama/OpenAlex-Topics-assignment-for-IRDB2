@@ -4,6 +4,8 @@ from .ndc_mapping import NDCMapper, NDCMatch
 from .topic_matcher import TopicMatcher, AssignmentResult
 from .bm25_index import BM25TopicIndex, BM25Match
 from .ensemble_matcher import EnsembleMatcher, EnsembleResult
+from .hierarchical_index import HierarchicalTopicIndex
+from .translator import translate, translate_batch, needs_translation
 
 __all__ = [
     "EmbeddingModel",
@@ -18,4 +20,8 @@ __all__ = [
     "BM25Match",
     "EnsembleMatcher",
     "EnsembleResult",
+    "HierarchicalTopicIndex",
+    "translate",
+    "translate_batch",
+    "needs_translation",
 ]
