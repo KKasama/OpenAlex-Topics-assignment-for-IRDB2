@@ -124,17 +124,30 @@ def _fuse(emb_cands, bm25_cands, w_emb: float, w_bm25: float, top_n: int) -> dic
     for tid in all_ids:
         e = emb_map.get(tid,  (0.0, None))[0]
         b = bm25_map.get(tid, 0.0)
+        m = meta[tid]
         scored.append({
             "topic_id":    tid,
-            "display_name": meta[tid].display_name,
+            "display_name": m.display_name,
+            "subfield":    m.subfield,
+            "field":       m.field,
+            "domain":      m.domain,
             "emb_score":   round(e, 4),
             "bm25_score":  round(b, 4),
             "final_score": round(w_emb * e + w_bm25 * b, 4),
         })
     scored.sort(key=lambda x: x["final_score"], reverse=True)
     best   = scored[0]
-    topics = [{"id": c["topic_id"], "display_name": c["display_name"],
-               "score": c["final_score"]} for c in scored[:max(top_n, 1)]]
+    topics = [
+        {
+            "id":          c["topic_id"],
+            "display_name": c["display_name"],
+            "subfield":    c["subfield"],
+            "field":       c["field"],
+            "domain":      c["domain"],
+            "score":       c["final_score"],
+        }
+        for c in scored[:max(top_n, 1)]
+    ]
     method = "v4_ensemble" if bm25_map.get(best["topic_id"], 0.0) > 0 else "v4_embedding"
     return {
         "primary_topic": topics[0],
