@@ -6,7 +6,8 @@ __pycache__/
 
 # Data (large files — regeneratable)
 data/*
-!data/human-eval-200.xlsx
+!data/cluster_to_topic.json
+!data/human-eval-200#1.xlsx
 index-base/
 index-scibert/
 index-e5-large/
@@ -15,8 +16,10 @@ logs/
 *.jsonl.gz
 *.csv
 
-# OS
-
+# Internal correspondence (not for public repo)
+docs/email-*.md
+docs/letter-*.md
+docs/proposal-*.md
 
 # OS
 .DS_Store
