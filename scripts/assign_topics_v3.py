@@ -44,6 +44,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.bm25_index          import BM25TopicIndex
 from src.embeddings          import EmbeddingModel, ModelType
 from src.hierarchical_index  import HierarchicalTopicIndex
+from src.text_cleaner        import clean_abstract
 from src.translator          import translate_batch as opus_translate_batch, needs_translation
 
 CHUNK_SIZE     = 64   # smaller chunks due to translation overhead
@@ -64,7 +65,7 @@ def _work_id(record: dict) -> str:
 
 def _paper_text(record: dict) -> str:
     title    = record.get("title", "") or ""
-    abstract = record.get("abstract", "") or ""
+    abstract = clean_abstract(record.get("abstract", "") or "")
     if abstract:
         return f"{title} [SEP] {abstract}"
     return title

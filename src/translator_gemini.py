@@ -35,7 +35,7 @@ class GeminiTranslator:
     def __init__(
         self,
         api_key:    str | None = None,
-        model_name: str = "gemini-2.0-flash",
+        model_name: str = "gemini-3.6-flash",
         batch_size: int = 10,
         rpm_limit:  int = 14,   # stay just under the 15 req/min free-tier limit
     ) -> None:

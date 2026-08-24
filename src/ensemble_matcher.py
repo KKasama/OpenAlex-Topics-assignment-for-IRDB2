@@ -23,11 +23,12 @@ from pathlib import Path
 
 import numpy as np
 
-from .bm25_index   import BM25TopicIndex, BM25Match
-from .embeddings   import EmbeddingModel, ModelType
-from .language     import is_japanese
-from .ndc_mapping  import NDCMapper, NDCMatch
-from .topic_index  import TopicIndex, TopicMatch
+from .bm25_index    import BM25TopicIndex, BM25Match
+from .embeddings    import EmbeddingModel, ModelType
+from .language      import is_japanese
+from .ndc_mapping   import NDCMapper, NDCMatch
+from .text_cleaner  import clean_abstract
+from .topic_index   import TopicIndex, TopicMatch
 
 
 # ────────────────────────────────────────────────────────────────────────
@@ -125,7 +126,7 @@ class EnsembleMatcher:
 
         for i, paper in enumerate(papers):
             title    = paper.get("title", "") or ""
-            abstract = paper.get("abstract", "") or ""
+            abstract = clean_abstract(paper.get("abstract", "") or "")
             language = paper.get("language")
             if japanese_only and not is_japanese(title, abstract, language):
                 out[i] = _skipped_result()
